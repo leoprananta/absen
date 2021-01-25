@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 21 Jan 2021 pada 02.49
--- Versi Server: 10.1.16-MariaDB
--- PHP Version: 5.5.38
+-- Generation Time: Jan 25, 2021 at 08:13 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `absensi`
+-- Table structure for table `absensi`
 --
 
 CREATE TABLE `absensi` (
@@ -35,7 +36,7 @@ CREATE TABLE `absensi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `absensi`
+-- Dumping data for table `absensi`
 --
 
 INSERT INTO `absensi` (`id_absen`, `tgl`, `waktu`, `keterangan`, `id_user`) VALUES
@@ -62,12 +63,13 @@ INSERT INTO `absensi` (`id_absen`, `tgl`, `waktu`, `keterangan`, `id_user`) VALU
 (12342, '2021-01-18', '06:00:38', 'Masuk', 17),
 (12343, '2021-01-18', '06:00:55', 'Pulang', 17),
 (12344, '2021-01-20', '17:30:57', 'Masuk', 15),
-(12345, '2021-01-20', '17:31:14', 'Pulang', 15);
+(12345, '2021-01-20', '17:31:14', 'Pulang', 15),
+(12346, '2021-01-25', '11:58:30', 'Masuk', 21);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `divisi`
+-- Table structure for table `divisi`
 --
 
 CREATE TABLE `divisi` (
@@ -76,7 +78,7 @@ CREATE TABLE `divisi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `divisi`
+-- Dumping data for table `divisi`
 --
 
 INSERT INTO `divisi` (`id_divisi`, `nama_divisi`) VALUES
@@ -90,7 +92,7 @@ INSERT INTO `divisi` (`id_divisi`, `nama_divisi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jam`
+-- Table structure for table `jam`
 --
 
 CREATE TABLE `jam` (
@@ -101,7 +103,7 @@ CREATE TABLE `jam` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `jam`
+-- Dumping data for table `jam`
 --
 
 INSERT INTO `jam` (`id_jam`, `start`, `finish`, `keterangan`) VALUES
@@ -111,7 +113,7 @@ INSERT INTO `jam` (`id_jam`, `start`, `finish`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -124,23 +126,28 @@ CREATE TABLE `users` (
   `divisi` smallint(5) DEFAULT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(60) NOT NULL,
-  `level` enum('Manager','Karyawan') NOT NULL DEFAULT 'Karyawan'
+  `level` enum('Manager','Karyawan') NOT NULL DEFAULT 'Karyawan',
+  `pendidikan` varchar(500) NOT NULL,
+  `tugas` varchar(500) NOT NULL,
+  `alamat` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `nik`, `nama`, `telp`, `email`, `foto`, `divisi`, `username`, `password`, `level`) VALUES
-(1, '12312312332123', 'Ahmad Fadillah 1', '08139212092', 'ahm.fadil@mail.com', '1564316194.png', NULL, 'ahmad', '$2y$10$UwqloCX7PFLM3aQvgQxh6e9UgifqwQOZiF1zdogtLF6iVDR7Yr7IW', ''),
-(8, '8931289124891', 'Manager 1', '', '', 'no-foto.png', NULL, 'manager_1', '$2y$10$XtMY01KEOd5I065s8Exs0OcQ373RvRNG1JznORr6TmmBNWnZ3vjjK', ''),
-(9, '1231231238900', 'Manager 2', '', '', 'no-foto.png', NULL, 'manager_2', '$2y$10$iJWUOXDznGEmxo.bqnhtmeFL51jN5130LfDlKg8VROfoEmlgC.cFW', ''),
-(10, '908121310291', 'Manager 3', '', '', 'no-foto.png', NULL, 'manager_3', '$2y$10$uGsLvgl.6ji2iZ7tWkNvPelTwZdLQ6QA81Yawa20wsLairCXqV8BO', ''),
-(11, '123801204012', 'Manager 4', '', '', 'no-foto.png', NULL, 'master_4', '$2y$10$Kot81WNqrho4WlcYI13kT.Y5V2sMg1ZSAXcITrp8cj3dqHpbl4vrS', ''),
-(14, '1234567890', 'Bergas C Penanggungan', '123456789', 'disbudpar@kuduskab.go.id', 'no-foto.png', NULL, 'Kepala', '$2y$10$UKoPT05w7MynpelVbPk4yO.j4w45nTAy2TYtBSN9KUJUmKeUGzGN6', 'Manager'),
-(15, '', 'M Sarifuddin', '085743728770', 'msarifuddin21@gmail.com', 'no-foto.png', 5, 'Sarif', '$2y$10$2NXPzdgWfiF6GeQA5Nzx4u/UnsikhUx5hpgporm9ycrXXAg7glR3.', 'Karyawan'),
-(16, '123021312', 'Mansurudin', '012312', 'air@2.c', 'no-foto.png', 5, 'mansur', '$2y$10$ZixyNJrtmcnySsRq8.bcn.Nh8eX.kLpRt.UuAjnzbfojOrq.IMJY6', 'Karyawan'),
-(17, 'firdaus', 'Muhammad Firdaus Nuzula', '0123', 'nusula@al.c', 'no-foto.png', 5, 'daus', '$2y$10$84bz6gnfDemN1T3dIa54pOyRW1MxaBD2033DoxvhxUSq2lM9VOz3u', 'Karyawan');
+INSERT INTO `users` (`id_user`, `nik`, `nama`, `telp`, `email`, `foto`, `divisi`, `username`, `password`, `level`, `pendidikan`, `tugas`, `alamat`) VALUES
+(1, '12312312332123', 'Ahmad Fadillah 1', '08139212092', 'ahm.fadil@mail.com', '1564316194.png', NULL, 'ahmad', '$2y$10$UwqloCX7PFLM3aQvgQxh6e9UgifqwQOZiF1zdogtLF6iVDR7Yr7IW', '', '', '', ''),
+(8, '8931289124891', 'Manager 1', '', '', 'no-foto.png', NULL, 'manager_1', '$2y$10$XtMY01KEOd5I065s8Exs0OcQ373RvRNG1JznORr6TmmBNWnZ3vjjK', '', '', '', ''),
+(9, '1231231238900', 'Manager 2', '', '', 'no-foto.png', NULL, 'manager_2', '$2y$10$iJWUOXDznGEmxo.bqnhtmeFL51jN5130LfDlKg8VROfoEmlgC.cFW', '', '', '', ''),
+(10, '908121310291', 'Manager 3', '', '', 'no-foto.png', NULL, 'manager_3', '$2y$10$uGsLvgl.6ji2iZ7tWkNvPelTwZdLQ6QA81Yawa20wsLairCXqV8BO', '', '', '', ''),
+(11, '123801204012', 'Manager 4', '', '', 'no-foto.png', NULL, 'master_4', '$2y$10$Kot81WNqrho4WlcYI13kT.Y5V2sMg1ZSAXcITrp8cj3dqHpbl4vrS', '', '', '', ''),
+(14, '1234567890', 'Bergas C Penanggungan', '123456789', 'disbudpar@kuduskab.go.id', 'no-foto.png', NULL, 'Kepala', '$2y$10$UKoPT05w7MynpelVbPk4yO.j4w45nTAy2TYtBSN9KUJUmKeUGzGN6', 'Manager', '', '', ''),
+(15, '12347', 'M Sarifuddin', '085743728770', 'msarifuddin21@gmail.com', 'no-foto.png', NULL, 'Sarif', '$2y$10$2NXPzdgWfiF6GeQA5Nzx4u/UnsikhUx5hpgporm9ycrXXAg7glR3.', 'Karyawan', '', '', ''),
+(16, '123021312', 'Mansurudin', '012312', 'air@2.c', 'no-foto.png', 5, 'mansur', '$2y$10$ZixyNJrtmcnySsRq8.bcn.Nh8eX.kLpRt.UuAjnzbfojOrq.IMJY6', 'Karyawan', '', '', ''),
+(17, 'firdaus', 'Muhammad Firdaus Nuzula', '0123', 'nusula@al.c', 'no-foto.png', NULL, 'daus', '$2y$10$84bz6gnfDemN1T3dIa54pOyRW1MxaBD2033DoxvhxUSq2lM9VOz3u', 'Karyawan', '', '', ''),
+(21, '1111111', 'Testing', '089546576544', 'user@gmail.com', '1611549632.png', 1, 'testing', '$2y$10$ZOdKlPTmBePs9Nm1c0U8r.LgKmRKsikf3kzd/cfAA/EZiII5/UQM2', 'Karyawan', 'Sarjana', 'Pegawai', 'Kudus'),
+(22, '2222222', 'Testing2', '089546576544', 'user@gmail.com', 'no-foto.png', 1, 'testing2', '$2y$10$bixFk4raSNqT.sgEvSAnZeyThal62iSagO4pTEql3OChaZTDT8mkW', 'Karyawan', 'Sarjana', 'Pegawai', 'Kudus');
 
 --
 -- Indexes for dumped tables
@@ -178,22 +185,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12346;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12347;
+
 --
 -- AUTO_INCREMENT for table `divisi`
 --
 ALTER TABLE `divisi`
   MODIFY `id_divisi` smallint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `jam`
 --
 ALTER TABLE `jam`
   MODIFY `id_jam` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_user` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
