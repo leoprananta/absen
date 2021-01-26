@@ -4,10 +4,10 @@
             <div class="card-header">
                 <div class="row">
 				<h4 class="col card-title ml-5 h1">Daftar Karyawan</h4>
-				<div class="col6"/>
-				<div class="col "> <a href="<?= base_url('dashboard') ?>" class="btn btn-success" type="button" style="height: 42px; text-align:right;" ><i class="fa fa-chevron-down"></i><strong>Rekap</strong><br /></a>
-				<a href="<?= base_url('daftar_absensi') ?>" class="btn btn-success" type="button" style="height: 42px; text-align:right;" ><i class="fa fa-chevron-left"></i><strong>Kembali</strong><br /></a>
-				
+				<div class="col6">
+				<div class="col "> 
+                    <a href="<?= base_url('absensi/rekapall/' . $divisi) ?>" class="btn btn-success" type="button" style="height: 42px; text-align:right;" ><i class="fa fa-chevron-down"></i><strong>Rekap</strong><br /></a>
+				    <a href="<?= base_url('daftar_absensi') ?>" class="btn btn-success" type="button" style="height: 42px; text-align:right;" ><i class="fa fa-chevron-left"></i><strong>Kembali</strong><br /></a>
 				</div>
 				</div>
 		   </div>

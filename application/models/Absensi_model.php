@@ -25,6 +25,29 @@ class Absensi_model extends CI_Model
 		return $result->result_array();
     }
 
+    public function get_absen2($id_divisi, $id_user, $bulan, $tahun)
+    {
+		
+       // $this->db->select("DATE_FORMAT(a.tgl, '%d-%m-%Y') AS tgl, a.waktu AS jam_masuk, (SELECT waktu FROM absensi al WHERE al.tgl = a.tgl AND id_user = //'6' AND al.keterangan != a.keterangan) AS jam_pulang");
+        //$this->db->select("DATE_FORMAT(a.tgl, '%d-%m-%Y') AS tgl, a.waktu AS jam_masuk, (SELECT waktu FROM absensi al WHERE al.tgl = a.tgl AND id_user = //'6' AND al.keterangan != a.keterangan) AS jam_pulang");
+        //$this->db->where('id_user', $id_user);
+        //$this->db->where("DATE_FORMAT(tgl, '%m') = ", $bulan);
+        //$this->db->where("DATE_FORMAT(tgl, '%Y') = ", $tahun);
+        //$this->db->group_by("tgl");
+        //$result = $this->db->get('absensi a');
+        $this->db->select("DATE_FORMAT(a.tgl, '%d-%m-%Y') AS tgl, a.waktu AS jam_masuk,(SELECT waktu FROM absensi al WHERE al.tgl = a.tgl AND id_user = a.id_user AND al.keterangan like 'Pulang' limit 0,1) AS jam_pulang");
+        $this->db->where('id_user', $id_user);
+        $this->db->where('id_divisi', $id_user);
+        $this->db->where("DATE_FORMAT(tgl, '%m') = ", $bulan);
+        $this->db->where("DATE_FORMAT(tgl, '%Y') = ", $tahun);
+        $this->db->group_by("tgl");
+        $result = $this->db->get('absensi a');
+		
+		
+		
+		return $result->result_array();
+    }
+
     public function absen_harian_user($id_user)
     {
         $today = date('Y-m-d');

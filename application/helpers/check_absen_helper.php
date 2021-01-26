@@ -16,6 +16,15 @@ function check_absen_harian()
     }
 }
 
+function get_absen_all($id_user){
+    $CI =& get_instance();
+    $CI->load->model('Absensi_model', 'absensi');
+    $bulan = $CI->input->get('bulan') ? $CI->input->get('bulan') : date('m');
+    $tahun = $CI->input->get('tahun') ? $CI->input->get('tahun') : date('Y');
+    $absen = $CI->absensi->get_absen($id_user, $bulan, $tahun);
+    return $absen;
+}
+
 //fungsi by arifoxs grogol
 function cek_telat($jam,$jam_masuk){
 	

@@ -12,6 +12,7 @@ class Absensi extends CI_Controller
         $this->load->model('Karyawan_model', 'karyawan');
         $this->load->model('Jam_model', 'jam');
         $this->load->helper('Tanggal');
+        $this->load->model('Divisi_model', 'divisi');
     }
 
     public function index()
@@ -33,6 +34,7 @@ class Absensi extends CI_Controller
 	public function filter_divisi($divisi)
     {
         $data['karyawan'] = $this->karyawan->get_filter($divisi);
+        $data['divisi'] = $divisi;
         return $this->template->load('template', 'absensi/list_karyawan', $data);
     }
 	
@@ -104,6 +106,19 @@ class Absensi extends CI_Controller
         $filename = 'Absensi ' . $data['karyawan']->nama . ' - ' . bulan($data['bulan']) . ' ' . $data['tahun'] . '.pdf';
 
         $this->pdf->loadHtml($html_content);
+        $this->pdf->render();
+        $this->pdf->stream($filename, ['Attachment' => 1]);
+    }
+
+    public function export_pdf_divisi()
+    {
+        $this->load->library('pdf');
+        $data = $this->detail_data_rekap();
+        $html_content = $this->load->view('absensi/print_all', $data, true);
+        $filename = 'Absensi ' . $data['divisi']->nama_divisi . ' - ' . bulan($data['bulan']) . ' ' . $data['tahun'] . '.pdf';
+
+        $this->pdf->loadHtml($html_content);
+        $this->pdf->set_paper('a4', 'landscape');
         $this->pdf->render();
         $this->pdf->stream($filename, ['Attachment' => 1]);
     }
@@ -492,6 +507,36 @@ class Absensi extends CI_Controller
         $write->save('php://output');
     }
 
+
+
+
+
+    public function rekapall()
+    {
+        $data = $this->detail_data_rekap();
+        return $this->template->load('template', 'absensi/rekap_all', $data);
+    }
+
+    private function detail_data_rekap()
+    {
+        $id_divisi = @$this->uri->segment(3) ? $this->uri->segment(3) : $this->session->id_divisi;
+        // $id_all_user = $this->karyawan->get_filter($id_divisi);
+
+        $bulan = @$this->input->get('bulan') ? $this->input->get('bulan') : date('m');
+        $tahun = @$this->input->get('tahun') ? $this->input->get('tahun') : date('Y');
+        
+        
+        $data['divisi'] = $this->divisi->find($id_divisi);
+        $data['karyawan'] = $this->karyawan->get_filter($id_divisi);
+        // $data['absen'] = $this->absensi->get_absen(21, $bulan, $tahun);
+        $data['jam_kerja'] = (array) $this->jam->get_all();
+        $data['all_bulan'] = bulan();
+        $data['bulan'] = $bulan;
+        $data['tahun'] = $tahun;
+        $data['hari'] = hari_bulan($bulan, $tahun);
+
+        return $data;
+    }
 
 }
 

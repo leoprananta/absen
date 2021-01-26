@@ -32,13 +32,13 @@
                             <div class="form-group">
                                 <label for="nik">NIk : </label>
                                 <input type="hidden" name="id_user" value="<?= $this->uri->segment(3) ?>">
-                                <input type="text" name="nik" id="nik" value="<?= $user->nik ?>" class="form-control" placeholder="Masukan NIK Karyawan" readonly required="reuqired" />
+                                <input type="text" name="nik" id="nik" value="<?= $user->nik ?>" class="form-control" placeholder="Masukan NIK Karyawan" <?= ($this->session->level == 'Karyawan') ? 'readonly' : '' ?> required="reuqired" />
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6">
                             <div class="form-group">
                                 <label for="nama">Nama Lengkap : </label>
-                                <input type="text" name="nama" id="nama" value="<?= $user->nama ?>" class="form-control" placeholder="Masukana Nama Lengkap Karyawan" readonly required="reuqired" />
+                                <input type="text" name="nama" id="nama" value="<?= $user->nama ?>" class="form-control" placeholder="Masukana Nama Lengkap Karyawan" <?= ($this->session->level == 'Karyawan') ? 'readonly' : '' ?> required="reuqired" />
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="divisi">Divisi : </label>
-                                    <select name="divisi" id="divisi" value="<?= $user->divisi==NULL?"kosong":"Ora Kosong" ?>" readonly class="form-control">
+                                    <select name="divisi" id="divisi" value="<?= $user->divisi==NULL?"kosong":"Ora Kosong" ?>" <?= ($this->session->level == 'Karyawan') ? 'readonly' : '' ?> class="form-control">
                                         <!-- <option value="" disabled selected>-- Pilih Divisi --</option> -->
                                         <?php foreach($divisi as $d): ?>
                                             <option value="<?= $d->id_divisi ?>" <?= ($d->id_divisi == $user->divisi) ? 'selected' : '' ?>><?= $d->nama_divisi ?></option>
@@ -96,7 +96,7 @@
                         <div class="col-xs-12 col-sm-6">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="text" name="username" id="username" value="<?= $user->username ?>" class="form-control" placeholder="Masukan Username" readonly required="reuqired" />
+                                <input type="text" name="username" id="username" value="<?= $user->username ?>" class="form-control" placeholder="Masukan Username" <?= ($this->session->level == 'Karyawan') ? 'readonly' : '' ?> required="reuqired" />
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6">
