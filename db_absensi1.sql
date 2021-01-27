@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2021 at 08:13 AM
+-- Generation Time: Jan 27, 2021 at 06:13 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -64,7 +64,13 @@ INSERT INTO `absensi` (`id_absen`, `tgl`, `waktu`, `keterangan`, `id_user`) VALU
 (12343, '2021-01-18', '06:00:55', 'Pulang', 17),
 (12344, '2021-01-20', '17:30:57', 'Masuk', 15),
 (12345, '2021-01-20', '17:31:14', 'Pulang', 15),
-(12346, '2021-01-25', '11:58:30', 'Masuk', 21);
+(12346, '2021-01-25', '11:58:30', 'Masuk', 21),
+(12347, '2021-01-26', '10:55:37', 'Masuk', 21),
+(12348, '2021-01-26', '12:58:04', 'Masuk', 22),
+(12349, '2021-01-27', '07:15:58', 'Masuk', 21),
+(12350, '2021-01-27', '09:37:02', 'Masuk', 23),
+(12351, '2021-01-27', '11:05:29', 'Pulang', 23),
+(12352, '2021-01-27', '11:42:19', 'Masuk', 24);
 
 -- --------------------------------------------------------
 
@@ -137,7 +143,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `nik`, `nama`, `telp`, `email`, `foto`, `divisi`, `username`, `password`, `level`, `pendidikan`, `tugas`, `alamat`) VALUES
-(1, '12312312332123', 'Ahmad Fadillah 1', '08139212092', 'ahm.fadil@mail.com', '1564316194.png', NULL, 'ahmad', '$2y$10$UwqloCX7PFLM3aQvgQxh6e9UgifqwQOZiF1zdogtLF6iVDR7Yr7IW', '', '', '', ''),
+(1, '12312312332123', 'Admin Absen', '08139212092', 'adminabsen@mail.com', '1564316194.png', NULL, 'adminabsen', '$2y$10$UwqloCX7PFLM3aQvgQxh6e9UgifqwQOZiF1zdogtLF6iVDR7Yr7IW', 'Manager', 'Sarjana', 'Admin Absensi', 'Kudus'),
 (8, '8931289124891', 'Manager 1', '', '', 'no-foto.png', NULL, 'manager_1', '$2y$10$XtMY01KEOd5I065s8Exs0OcQ373RvRNG1JznORr6TmmBNWnZ3vjjK', '', '', '', ''),
 (9, '1231231238900', 'Manager 2', '', '', 'no-foto.png', NULL, 'manager_2', '$2y$10$iJWUOXDznGEmxo.bqnhtmeFL51jN5130LfDlKg8VROfoEmlgC.cFW', '', '', '', ''),
 (10, '908121310291', 'Manager 3', '', '', 'no-foto.png', NULL, 'manager_3', '$2y$10$uGsLvgl.6ji2iZ7tWkNvPelTwZdLQ6QA81Yawa20wsLairCXqV8BO', '', '', '', ''),
@@ -147,7 +153,9 @@ INSERT INTO `users` (`id_user`, `nik`, `nama`, `telp`, `email`, `foto`, `divisi`
 (16, '123021312', 'Mansurudin', '012312', 'air@2.c', 'no-foto.png', 5, 'mansur', '$2y$10$ZixyNJrtmcnySsRq8.bcn.Nh8eX.kLpRt.UuAjnzbfojOrq.IMJY6', 'Karyawan', '', '', ''),
 (17, 'firdaus', 'Muhammad Firdaus Nuzula', '0123', 'nusula@al.c', 'no-foto.png', NULL, 'daus', '$2y$10$84bz6gnfDemN1T3dIa54pOyRW1MxaBD2033DoxvhxUSq2lM9VOz3u', 'Karyawan', '', '', ''),
 (21, '1111111', 'Testing', '089546576544', 'user@gmail.com', '1611549632.png', 1, 'testing', '$2y$10$ZOdKlPTmBePs9Nm1c0U8r.LgKmRKsikf3kzd/cfAA/EZiII5/UQM2', 'Karyawan', 'Sarjana', 'Pegawai', 'Kudus'),
-(22, '2222222', 'Testing2', '089546576544', 'user@gmail.com', 'no-foto.png', 1, 'testing2', '$2y$10$bixFk4raSNqT.sgEvSAnZeyThal62iSagO4pTEql3OChaZTDT8mkW', 'Karyawan', 'Sarjana', 'Pegawai', 'Kudus');
+(22, '2222222', 'Testing2', '089546576544', 'user@gmail.com', 'no-foto.png', 1, 'testing2', '$2y$10$bixFk4raSNqT.sgEvSAnZeyThal62iSagO4pTEql3OChaZTDT8mkW', 'Karyawan', 'Sarjana', 'Pegawai', 'Kudus'),
+(23, '3333333', 'Testing3', '089546576544', 'user@gmail.com', 'no-foto.png', 1, 'testing3', '$2y$10$VfUY2SRy53Wf226Z0kJYEujpT1qezH6nrXfSWS/a2aTY8IuaHe8Kq', 'Karyawan', 'Sarjana', 'Pegawai', 'Jepara'),
+(24, '444444', 'Testing4', '089546576544', 'user@gmail.com', 'no-foto.png', 1, 'testing4', '$2y$10$ZUI/cMYFLduRF7I2oqHfeuwn1KWVGZMCTzARw943kY58y4HDA0mPG', 'Karyawan', 'Sarjana', 'Pegawai', 'Kudus');
 
 --
 -- Indexes for dumped tables
@@ -185,7 +193,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12347;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12353;
 
 --
 -- AUTO_INCREMENT for table `divisi`
@@ -203,7 +211,7 @@ ALTER TABLE `jam`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_user` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

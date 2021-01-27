@@ -68,7 +68,6 @@
                         <?php foreach($hari as $i => $h): ?>
                         <td colspan="2"><?=$h['tgl']?></td>
                         <?php endforeach; ?>
-                        <td colspan="4">Keterangan</td>
                     </thead>
                     <thead>
                         <td></td>
@@ -77,10 +76,6 @@
                         <td>Masuk</td>
                         <td>Pulang</td>
                         <?php endforeach; ?>
-                        <td>S</td>
-                        <td>I</td>
-                        <td>A</td>
-                        <td>Hadir</td>
                     </thead>
                     <tbody>
                         <?php foreach($karyawan as $i => $k): ?>
@@ -103,10 +98,6 @@
 
                                     
                             <?php endforeach; ?>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
                             </tr>
                             
                         <?php endforeach; ?>

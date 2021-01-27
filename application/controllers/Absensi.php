@@ -106,7 +106,7 @@ class Absensi extends CI_Controller
         $filename = 'Absensi ' . $data['karyawan']->nama . ' - ' . bulan($data['bulan']) . ' ' . $data['tahun'] . '.pdf';
 
         $this->pdf->loadHtml($html_content);
-        $this->pdf->set_paper('a4', 'landscape');
+        $this->pdf->set_paper('legal', 'landscape');
         $this->pdf->render();
         $this->pdf->stream($filename, ['Attachment' => 1]);
     }
@@ -119,7 +119,9 @@ class Absensi extends CI_Controller
         $filename = 'Absensi ' . $data['divisi']->nama_divisi . ' - ' . bulan($data['bulan']) . ' ' . $data['tahun'] . '.pdf';
 
         $this->pdf->loadHtml($html_content);
+        // $customPaper = array(0,0,1000,360);
         $this->pdf->set_paper('a4', 'landscape');
+        // $this->pdf->set_paper();
         $this->pdf->render();
         $this->pdf->stream($filename, ['Attachment' => 1]);
     }

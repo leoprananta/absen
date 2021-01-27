@@ -27,33 +27,26 @@
                         </div>
                         <div class="card-body">
                 <h4 class="card-title mb-4">Absen Bulan : <?= bulan($bulan) . ' ' . $tahun ?></h4>
-                <table style="font-size:3px;" border="1" cellspacing="0">
+                <table style="font-size:3px;" border="0.5" cellspacing="0">
                     <thead>
                         <tr>
-                            <td rowspan="2">No</td>
-                            <td rowspan="2">Nama</td>
+                            <td  style="width: 8px;" rowspan="2">No</td>
+                            <td rowspan="2" style="width:20px">Nama</td>
                             <?php foreach($hari as $i => $h): ?>
                             <td colspan="2"><?=$h['tgl']?></td>
                             <?php endforeach; ?>
-                            <td colspan="4">Keterangan</td>
                         </tr>
                         <tr>
-                            <td></td>
                             <?php foreach($hari as $i => $h): ?>
                             <td>Masuk</td>
                             <td>Pulang</td>
                             <?php endforeach; ?>
-                            <td>S</td>
-                            <td>I</td>
-                            <td>A</td>
-                            <td>Hadir</td>
-                        </tr>
                     </thead>
                     <tbody>
                         <?php foreach($karyawan as $i => $k): ?>
                             <tr>
-                                <td><?= ($i+1) ?></td>
-                                <td><?= $k->nama ?></td>
+                                <td style="width: 8px;"><?= ($i+1) ?></td>
+                                <td style="width: 20px;"><?= $k->nama ?></td>
                                 <?php foreach($hari as $i => $h): ?>
                                 <?php
                                     //cek hari absensi dengan hari ini
@@ -66,10 +59,6 @@
                                 <td width="20%"><?= is_weekend($h['tgl']) ? 'Libur Akhir Pekan' : check_jam_baru(@$absen_harian['jam_masuk'], 'masuk') ?></td>
                                 <td width="20%"><?= is_weekend($h['tgl']) ? 'Libur Akhir Pekan' : check_jam_baru(@$absen_harian['jam_pulang'], 'pulang') ?></td>
                             <?php endforeach; ?>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
                             </tr>
                         <?php endforeach; ?>
                         <?php 
