@@ -35,14 +35,14 @@
                             <table class="" width="100%" border=1 style="font-size:12px">
                                 <thead>
                                     <tr>
-                                             <th>No</th>
-                        <th>Tanggal</th>
-						<th>Absen Masuk</th>
-						<th>Jam Masuk</th>
-                        <th>Keterangan</th>
-                        <th>Absen Pulang</th>
-                        <th>Jam Pulang</th>
-						<th>Keterangan</th>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Absen Masuk</th>
+                                        <th>Jam Masuk</th>
+                                        <th>Keterangan</th>
+                                        <th>Absen Pulang</th>
+                                        <th>Jam Pulang</th>
+                                        <th>Keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>

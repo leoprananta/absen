@@ -27,32 +27,33 @@
                         </div>
                         <div class="card-body">
                 <h4 class="card-title mb-4">Absen Bulan : <?= bulan($bulan) . ' ' . $tahun ?></h4>
-                <table style="font-size:4px" border="1" cellspacing="0">
+                <table style="font-size:3px;" border="1" cellspacing="0">
                     <thead>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <?php foreach($hari as $i => $h): ?>
-                        <th colspan="2"><?=$h['tgl']?></th>
-                        <?php endforeach; ?>
-                        <th colspan="4">Keterangan</th>
-                    </thead>
-                    <thead>
-                        <th></th>
-                        <th></th>
-                        <?php foreach($hari as $i => $h): ?>
-                        <th>Masuk</th>
-                        <th>Pulang</th>
-                        <?php endforeach; ?>
-                        <th>S</th>
-                        <th>I</th>
-                        <th>A</th>
-                        <th>Hadir</th>
+                        <tr>
+                            <td rowspan="2">No</td>
+                            <td rowspan="2">Nama</td>
+                            <?php foreach($hari as $i => $h): ?>
+                            <td colspan="2"><?=$h['tgl']?></td>
+                            <?php endforeach; ?>
+                            <td colspan="4">Keterangan</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <?php foreach($hari as $i => $h): ?>
+                            <td>Masuk</td>
+                            <td>Pulang</td>
+                            <?php endforeach; ?>
+                            <td>S</td>
+                            <td>I</td>
+                            <td>A</td>
+                            <td>Hadir</td>
+                        </tr>
                     </thead>
                     <tbody>
                         <?php foreach($karyawan as $i => $k): ?>
                             <tr>
                                 <td><?= ($i+1) ?></td>
-                                <td><?= $k->nama, ". id:", $k->id_user ?></td>
+                                <td><?= $k->nama ?></td>
                                 <?php foreach($hari as $i => $h): ?>
                                 <?php
                                     //cek hari absensi dengan hari ini

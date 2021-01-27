@@ -106,6 +106,7 @@ class Absensi extends CI_Controller
         $filename = 'Absensi ' . $data['karyawan']->nama . ' - ' . bulan($data['bulan']) . ' ' . $data['tahun'] . '.pdf';
 
         $this->pdf->loadHtml($html_content);
+        $this->pdf->set_paper('a4', 'landscape');
         $this->pdf->render();
         $this->pdf->stream($filename, ['Attachment' => 1]);
     }

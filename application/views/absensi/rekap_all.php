@@ -40,11 +40,12 @@
                     <div class="col-xs-12 col-sm-6">
                         <table class="table border-0">
                             <tr>
-                                <th class="border-0 py-0">Divisi <?= $divisi->nama_divisi ?></th>
+                                <td class="border-0 py-0">Divisi <?= $divisi->nama_divisi ?></td>
                             </tr>
                         </table>
                     </div>
                     <div class="col-xs-12 col-sm-6 ml-auto text-right mb-2">
+                    <a href="<?= base_url('absensi/export_pdf_divisi/' . $this->uri->segment(3) . "?bulan=$bulan&tahun=$tahun") ?>" class="dropdown-item" target="_blank"><i class="fa fa-file-pdf-o"></i> PDF</a>
                         <div class="dropdown d-inline">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="droprop-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-print"></i>
@@ -60,26 +61,26 @@
             </div>            
             <div class="card-body">
                 <h4 class="card-title mb-4">Absen Bulan : <?= bulan($bulan) . ' ' . $tahun ?></h4>
-                <table class="table table-striped table-bordered" width="100%">
+                <table class="table table-striped table-bordered" style="font-size: 10px;" width="100%">
                     <thead>
-                        <th rowspan="2">No</th>
-                        <th rowspan="2">Nama</th>
+                        <td rowspan="2">No</td>
+                        <td rowspan="2">Nama</td>
                         <?php foreach($hari as $i => $h): ?>
-                        <th colspan="2" width="5%"><?=$h['tgl']?></th>
+                        <td colspan="2"><?=$h['tgl']?></td>
                         <?php endforeach; ?>
-                        <th colspan="4">Keterangan</th>
+                        <td colspan="4">Keterangan</td>
                     </thead>
                     <thead>
-                        <th></th>
-                        <th></th>
+                        <td></td>
+                        <td></td>
                         <?php foreach($hari as $i => $h): ?>
-                        <th>Masuk</th>
-                        <th>Pulang</th>
+                        <td>Masuk</td>
+                        <td>Pulang</td>
                         <?php endforeach; ?>
-                        <th>S</th>
-                        <th>I</th>
-                        <th>A</th>
-                        <th>Hadir</th>
+                        <td>S</td>
+                        <td>I</td>
+                        <td>A</td>
+                        <td>Hadir</td>
                     </thead>
                     <tbody>
                         <?php foreach($karyawan as $i => $k): ?>
@@ -95,14 +96,19 @@
                                     $absen = $CI->absensi->get_absen($k->id_user, $bulan, $tahun);
                                     $absen_harian = array_search($h['tgl'], array_column($absen, 'tgl')) !== false ? $absen[array_search($h['tgl'], array_column($absen, 'tgl'))] : '';
                                 ?>
-                                <td width="20%"><?= is_weekend($h['tgl']) ? 'Libur Akhir Pekan' : check_jam_baru(@$absen_harian['jam_masuk'], 'masuk') ?></td>
-                                <td width="20%"><?= is_weekend($h['tgl']) ? 'Libur Akhir Pekan' : check_jam_baru(@$absen_harian['jam_pulang'], 'pulang') ?></td>
+                                
+
+                                <td width="20%" class="<?= is_weekend($h['tgl']) ? 'bg-dark text-white' : '' ?> <?=$absen_harian=='' ? 'bg-danger text-white' : '' ?>"><?= is_weekend($h['tgl']) ? 'Libur Akhir Pekan' : check_jam_baru(@$absen_harian['jam_masuk'], 'masuk') ?></td>
+                                <td width="20%" class="<?= is_weekend($h['tgl']) ? 'bg-dark text-white' : '' ?> <?=$absen_harian=='' ? 'bg-danger text-white' : '' ?>"><?= is_weekend($h['tgl']) ? 'Libur Akhir Pekan' : check_jam_baru(@$absen_harian['jam_pulang'], 'pulang') ?></td>
+
+                                    
                             <?php endforeach; ?>
                                 <td>0</td>
                                 <td>0</td>
                                 <td>0</td>
                                 <td>0</td>
                             </tr>
+                            
                         <?php endforeach; ?>
                         <?php 
 						if($karyawan == NULL){

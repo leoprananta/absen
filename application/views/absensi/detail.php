@@ -76,8 +76,6 @@
                         <th>Absen Pulang</th>
                         <th>Jam Pulang</th>
 						<th>Keterangan</th>
-						
-						
                     </thead>
                     <tbody>
                         <?php if($absen): ?>
