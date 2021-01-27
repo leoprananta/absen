@@ -45,7 +45,6 @@
                         </table>
                     </div>
                     <div class="col-xs-12 col-sm-6 ml-auto text-right mb-2">
-                    <a href="<?= base_url('absensi/export_pdf_divisi/' . $this->uri->segment(3) . "?bulan=$bulan&tahun=$tahun") ?>" class="dropdown-item" target="_blank"><i class="fa fa-file-pdf-o"></i> PDF</a>
                         <div class="dropdown d-inline">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="droprop-action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-print"></i>
@@ -53,7 +52,7 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="droprop-action">
                                 <a href="<?= base_url('absensi/export_pdf_divisi/' . $this->uri->segment(3) . "?bulan=$bulan&tahun=$tahun") ?>" class="dropdown-item" target="_blank"><i class="fa fa-file-pdf-o"></i> PDF</a>
-                                <!-- <a href="<?//= base_url('absensi/export_excel_detail/' . $this->uri->segment(3) . "?bulan=$bulan&tahun=$tahun") ?>" class="dropdown-item" target="_blank"><i class="fa fa-file-excel-o"></i> Excel</a> -->
+                                <a href="<?= base_url('absensi/export_excel_detail/' . $this->uri->segment(3) . "?bulan=$bulan&tahun=$tahun") ?>" class="dropdown-item" target="_blank"><i class="fa fa-file-excel-o"></i> Excel</a>
                             </div>
                         </div>
                     </div>

@@ -27,7 +27,7 @@
                         </div>
                         <div class="card-body">
                 <h4 class="card-title mb-4">Absen Bulan : <?= bulan($bulan) . ' ' . $tahun ?></h4>
-                <table style="font-size:3px;" border="0.5" cellspacing="0">
+                <table style="font-size:10px; border-color: rgba(0,0,255,0.25);" border="1" cellspacing="0">
                     <thead>
                         <tr>
                             <td  style="width: 8px;" rowspan="2">No</td>
