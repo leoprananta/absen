@@ -119,11 +119,11 @@ class Absensi extends CI_Controller
         $filename = 'Absensi ' . $data['divisi']->nama_divisi . ' - ' . bulan($data['bulan']) . ' ' . $data['tahun'] . '.pdf';
 
         $this->pdf->loadHtml($html_content);
-        // $customPaper = array(0,0,1500,360);
-        $this->pdf->set_paper('f4', 'landscape');
+        // $customPaper = array(0,0,2500,360);
+        $this->pdf->set_paper('f4', 'portrait');
         // $this->pdf->set_paper($customPaper);
         $this->pdf->render();
-        $this->pdf->stream($filename, ['Attachment' => FALSE]);
+        $this->pdf->stream($filename, ['Attachment' => TRUE]);
     }
 
     public function export_excel()
@@ -658,9 +658,6 @@ class Absensi extends CI_Controller
         $excel->setActiveSheetIndex(0)->setCellValue('B5', 'Nama');
         $excel->getActiveSheet()->mergeCells('B5:B6');
 
-        $excel->setActiveSheetIndex(0)->setCellValue('C6', 'Masuk');
-        $excel->setActiveSheetIndex(0)->setCellValue('D6', 'Pulang');
-
 		// $excel->setActiveSheetIndex(0)->setCellValue('E5', 'Keterangan');
         // $excel->setActiveSheetIndex(0)->setCellValue('F5', 'Absen Pulang');
         // $excel->setActiveSheetIndex(0)->setCellValue('G5', 'Jam Pulang');
@@ -670,10 +667,6 @@ class Absensi extends CI_Controller
         $excel->getActiveSheet()->getStyle('A6')->applyFromArray($style_col);
         $excel->getActiveSheet()->getStyle('B5')->applyFromArray($style_col);
         $excel->getActiveSheet()->getStyle('B6')->applyFromArray($style_col);
-        $excel->getActiveSheet()->getStyle('C5')->applyFromArray($style_col);
-        $excel->getActiveSheet()->getStyle('D5')->applyFromArray($style_col);
-        $excel->getActiveSheet()->getStyle('C6')->applyFromArray($style_col);
-        $excel->getActiveSheet()->getStyle('D6')->applyFromArray($style_col);
 
 		// $excel->getActiveSheet()->getStyle('E5')->applyFromArray($style_col);
 		// $excel->getActiveSheet()->getStyle('F5')->applyFromArray($style_col);
@@ -681,90 +674,131 @@ class Absensi extends CI_Controller
 		// $excel->getActiveSheet()->getStyle('H5')->applyFromArray($style_col);
 		
         $numrow = 7 ;
-        foreach ($hari as $i => $h) {
         foreach ($karyawan as $i => $k) {
         
             //no
             $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, ($i+1));
+            $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_col);
+
             //nama
             $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $k->nama);
-            $absen = $this->absensi->get_absen($k->id_user, $bulan, $tahun);
-            $absen_harian = array_search($h['tgl'], array_column($absen, 'tgl')) !== false ? $absen[array_search($h['tgl'], array_column($absen, 'tgl'))] : '';
-            //pack
-            $lastColumn = $excel->getActiveSheet()->getHighestDataColumn();
-            $lastColumn++;
-            for ($column = 'C'; $column != $lastColumn; $column++) {
-                //tgl
-                // $next = $column+1;
-                $excel->setActiveSheetIndex(0)->setCellValue($column.'5', $h['tgl']);
-            for ($column2 = 'D'; $column2 != $lastColumn; $column2++) {
-                // $excel->setActiveSheetIndex(0)->setCellValue($column2.'5', $h['tgl']);
-                $excel->getActiveSheet()->mergeCells($column.'5:'.$column2.'5');
-            }
-                // $excel->getActiveSheet()->mergeCells($column.'5:'.$column.'5');
-                // $cell = $worksheet->getCell($column.$numrow);
-                //  Do what you want with the cell
-                $excel->setActiveSheetIndex(0)->setCellValue($column.$numrow, is_weekend($h['tgl']) ? 'Libur Akhir Pekan' : check_jam_baru(@$absen_harian['jam_masuk'], 'masuk', true)['text']);
-                $excel->setActiveSheetIndex(0)->setCellValue( $column.$numrow, is_weekend($h['tgl']) ? 'Libur Akhir Pekan' : check_jam_baru(@$absen_harian['jam_pulang'], 'pulang', true)['text']);
-            }
-
-            //end pack
-			//Keterangan
-			// $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow,check_telat_baru(@$absen_harian['jam_masuk'], 'masuk'));
-			
-			// //Absen Keluar
-			// $excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, is_weekend($h['tgl']) ? 'Libur Akhir Pekan' : check_jam_baru(@$absen_harian['jam_masuk'], 'pulang', true)['text']);
-			// //jam pulang
-			// $excel->setActiveSheetIndex(0)->setCellValue('G'.$numrow, "15.15");
-			// //keterangan
-			
-            // $excel->setActiveSheetIndex(0)->setCellValue('H'.$numrow, is_weekend($h['tgl']) ? 'Libur Akhir Pekan' : check_telat_baru(@$absen_harian['jam_pulang'], 'pulang'));
-
-/*            if (check_jam(@$absen_harian['jam_masuk'], 'masuk', true)['status'] == 'telat') {
-                $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_telat);
-            }
-
-            if (check_jam(@$absen_harian['jam_pulang'], 'pulang', true)['status'] == 'lembur') {
-                $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_lembur);
-            }
-*/
-            if (is_weekend($h['tgl'])) {
-                // $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row_libur);
-                // $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row_libur);
-                $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row_libur);
-                $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row_libur);
-				// $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row_libur);
-				// $excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row_libur);
-				// $excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_row_libur);
-				// $excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_row_libur);
-				
-            } elseif ($absen_harian == '') {
-                // $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row_tidak_masuk);
-                // $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row_tidak_masuk);
-                $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row_tidak_masuk);
-                $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row_tidak_masuk);
-				// $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row_tidak_masuk);
-				// $excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row_tidak_masuk);
-				// $excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_row_tidak_masuk);
-				// $excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_row_tidak_masuk);
-				
-				
-            } else {
-                // $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
-                // $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
-                $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_col);
-                $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_col);
-                $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
-                $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
-				// $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
-				// $excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row);
-				// $excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_row);
-				// $excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_row);
-
-				
-            }
+            $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_col);
+            
             $numrow++;
+
         }
+
+
+        //error
+        $row = 5;
+        $lastColumn = $excel->getActiveSheet()->getHighestDataColumn();
+        $lastColumn++;
+        for ($column = 'C'; $column != $lastColumn; $column++) {
+            // $cell = $worksheet->getCell($column.$row);
+            //  Do what you want with the cell
+            foreach ($hari as $i => $h) {
+        
+                //tgl |||||
+                // $excel->setActiveSheetIndex(0)->setCellValue($column.$row, $h['tgl']);
+                $excel->getActiveSheet()->setCellValueByColumnAndRow($column, $row, 'tgl');
+                // $excel->getActiveSheet()->getStyle($column.$row)->applyFromArray($style_col);
+                // $excel->getActiveSheet()->mergeCells('C5:D5');        
+                
+                
+                $row++;
+            }
+        }
+
+        // $column = 'C';
+        // $lastRow =  $excel->getActiveSheet()->getHighestRow();
+        // for ($numrow = 5; $numrow <= $lastRow; $row++) {
+        //     // $cell = $worksheet->getCell($column.$row);
+        //     //  Do what you want with the cell
+        //     foreach ($hari as $i => $h) {
+        
+        //         //tgl -----
+        //         $excel->setActiveSheetIndex(0)->setCellValue($column.$numrow, $h['tgl']);
+        //         $excel->getActiveSheet()->getStyle($column.$numrow)->applyFromArray($style_col);
+        //         // $excel->getActiveSheet()->mergeCells('C5:D5');            
+    
+               
+                
+        //         $numrow++;
+    
+        //     }
+        // }
+        
+
+
+            // $numcol = 'C' ;
+            // foreach ($hari as $i => $h) {
+            //     $column = 'C';
+            //     $lastRow = $worksheet->getHighestRow();
+            //     for ($row = 6; $row <= $lastRow; $row++) {
+            //         $cell = $worksheet->getCell($column.$row);
+            //         //  Do what you want with the cell
+            //         //tgl
+            //         $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, ($i+1));
+            //     }
+            
+                
+                
+            //     $absen = $this->absensi->get_absen($k->id_user, $bulan, $tahun);
+            //     $absen_harian = array_search($h['tgl'], array_column($absen, 'tgl')) !== false ? $absen[array_search($h['tgl'], array_column($absen, 'tgl'))] : '';
+                
+                
+            //     //pack
+            //     $lastColumn = $excel->getActiveSheet()->getHighestDataColumn();
+            //     $lastColumn++;
+            //     for ($column = 'C'; $column != $lastColumn; $column++) {
+            //         $excel->setActiveSheetIndex(0)->setCellValue($column.'5', $h['tgl']);
+            //         $excel->setActiveSheetIndex(0)->setCellValue($column.'6', 'Masuk');
+            //         for ($column2 = 'D'; $column2 != $lastColumn; $column2++) {
+            //             $excel->getActiveSheet()->mergeCells($column.'5:'.$column2.'5');
+            //             $excel->setActiveSheetIndex(0)->setCellValue($column2.'6', 'Pulang');
+            //     }
+            //         $excel->setActiveSheetIndex(0)->setCellValue($column.$numrow, is_weekend($h['tgl']) ? 'Libur Akhir Pekan' : check_jam_baru(@$absen_harian['jam_masuk'], 'masuk', true)['text']);
+            //         $excel->setActiveSheetIndex(0)->setCellValue( $column.$numrow, is_weekend($h['tgl']) ? 'Libur Akhir Pekan' : check_jam_baru(@$absen_harian['jam_pulang'], 'pulang', true)['text']);
+            //     }
+            //     //end pack
+
+            //     if (is_weekend($h['tgl'])) {
+            //         // $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row_libur);
+            //         // $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row_libur);
+            //         $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row_libur);
+            //         $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row_libur);
+            //         // $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row_libur);
+            //         // $excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row_libur);
+            //         // $excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_row_libur);
+            //         // $excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_row_libur);
+                    
+            //     } elseif ($absen_harian == '') {
+            //         // $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row_tidak_masuk);
+            //         // $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row_tidak_masuk);
+            //         $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row_tidak_masuk);
+            //         $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row_tidak_masuk);
+            //         // $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row_tidak_masuk);
+            //         // $excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row_tidak_masuk);
+            //         // $excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_row_tidak_masuk);
+            //         // $excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_row_tidak_masuk);
+                    
+                    
+            //     } else {
+            //         // $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+            //         // $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+            //         $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_col);
+            //         $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_col);
+            //         $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
+            //         $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
+            //         // $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
+            //         // $excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row);
+            //         // $excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_row);
+            //         // $excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_row);
+
+                    
+            //     }
+            //     $numrow++;
+        // }
 
         $excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
         $excel->getActiveSheet()->getColumnDimension('B')->setWidth(25);
@@ -787,7 +821,7 @@ class Absensi extends CI_Controller
     }
 
 }
-}
+
 
 
 /* End of File: d:\Ampps\www\project\absen-pegawai\application\controllers\Absensi.php */
