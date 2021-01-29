@@ -32,7 +32,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title mb-4">Absen Bulan : <?= bulan($bulan) . ' ' . $tahun ?></h5>
-                            <table class="" width="100%" border=1 style="font-size:12px">
+                            <table class="" width="100%" style="font-size:12px; border-color: rgba(0,0,255,0.25);" border="1" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>No</th>

@@ -30,17 +30,17 @@
                 <table style="font-size:8px; border-color: rgba(0,0,255,0.25);" border="1" cellspacing="0">
                     <thead>
                         <tr>
-                            <td  style="width: 8px;" rowspan="2">No</td>
-                            <td rowspan="2" style="width:20px">Nama</td>
+                            <th  style="width: 8px;" rowspan="2">No</th>
+                            <th rowspan="2" style="width:20px">Nama</th>
                             <?php
                             
                             $len = count($hari);
                             $firsthalf = array_slice($hari, 0, $len / 2);
 
                             foreach($firsthalf as $i => $h):
-                            echo "<td colspan='2'>";
+                            echo "<th colspan='2'>";
                             echo $h['tgl'];
-                            echo "</td>";
+                            echo "</th>";
                             endforeach;
                             
                             ?>
@@ -52,8 +52,8 @@
                             $firsthalf = array_slice($hari, 0, $len / 2);
 
                             foreach($firsthalf as $i => $h):
-                            echo "<td>Masuk</td>";
-                            echo "<td>Pulang</td>";
+                            echo "<th>Masuk</th>";
+                            echo "<th>Pulang</th>";
                             endforeach;
                             
                             ?>
@@ -98,17 +98,17 @@
                 <table style="font-size:8px; border-color: rgba(0,0,255,0.25);" border="1" cellspacing="0">
                     <thead>
                         <tr>
-                            <td  style="width: 8px;" rowspan="2">No</td>
-                            <td rowspan="2" style="width:20px">Nama</td>
+                            <th  style="width: 8px;" rowspan="2">No</th>
+                            <th rowspan="2" style="width:20px">Nama</th>
                             <?php
                             
                             $len = count($hari);
                             $secondhalf = array_slice($hari, $len / 2);
 
                             foreach($secondhalf as $i => $h):
-                            echo "<td colspan='2'>";
+                            echo "<th colspan='2'>";
                             echo $h['tgl'];
-                            echo "</td>";
+                            echo "</th>";
                             endforeach;
                             
                             ?>
@@ -120,8 +120,8 @@
                             $secondhalf = array_slice($hari, $len / 2);
 
                             foreach($secondhalf as $i => $h):
-                            echo "<td>Masuk</td>";
-                            echo "<td>Pulang</td>";
+                            echo "<th>Masuk</th>";
+                            echo "<th>Pulang</th>";
                             endforeach;
                             
                             ?>
