@@ -120,10 +120,10 @@ class Absensi extends CI_Controller
 
         $this->pdf->loadHtml($html_content);
         // $customPaper = array(0,0,2500,360);
-        $this->pdf->set_paper('f4', 'portrait');
+        $this->pdf->set_paper('f4', 'landscape');
         // $this->pdf->set_paper($customPaper);
         $this->pdf->render();
-        $this->pdf->stream($filename, ['Attachment' => TRUE]);
+        $this->pdf->stream($filename, ['Attachment' => true]);
     }
 
     public function export_excel()

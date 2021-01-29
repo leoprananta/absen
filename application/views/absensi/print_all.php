@@ -35,7 +35,7 @@
                             <?php
                             
                             $len = count($hari);
-                            $firsthalf = array_slice($hari, 0, $len / 3);
+                            $firsthalf = array_slice($hari, 0, $len / 2);
 
                             foreach($firsthalf as $i => $h):
                             echo "<td colspan='2'>";
@@ -49,7 +49,7 @@
                         <?php
                             
                             $len = count($hari);
-                            $firsthalf = array_slice($hari, 0, $len / 3);
+                            $firsthalf = array_slice($hari, 0, $len / 2);
 
                             foreach($firsthalf as $i => $h):
                             echo "<td>Masuk</td>";
@@ -67,7 +67,7 @@
                                 <?php
                             
                                 $len = count($hari);
-                                $firsthalf = array_slice($hari, 0, $len / 3);
+                                $firsthalf = array_slice($hari, 0, $len / 2);
 
                                 foreach($firsthalf as $i => $h):
                                     $CI =& get_instance();
@@ -103,7 +103,7 @@
                             <?php
                             
                             $len = count($hari);
-                            $secondhalf = array_slice($hari, 10, $len / 3);
+                            $secondhalf = array_slice($hari, $len / 2);
 
                             foreach($secondhalf as $i => $h):
                             echo "<td colspan='2'>";
@@ -117,7 +117,7 @@
                         <?php
                             
                             $len = count($hari);
-                            $secondhalf = array_slice($hari, 10, $len / 3);
+                            $secondhalf = array_slice($hari, $len / 2);
 
                             foreach($secondhalf as $i => $h):
                             echo "<td>Masuk</td>";
@@ -135,7 +135,7 @@
                                 <?php
                             
                                 $len = count($hari);
-                                $secondhalf = array_slice($hari, 10, $len / 3);
+                                $secondhalf = array_slice($hari, $len / 2);
 
                                 foreach($secondhalf as $i => $h):
 
@@ -161,7 +161,7 @@
                     </tbody>
                 </table>
 
-                <br>
+                <!-- <br>
                 <br>
 
                 <table style="font-size:8px; border-color: rgba(0,0,255,0.25);" border="1" cellspacing="0">
@@ -228,7 +228,7 @@
 						}
 						?>
                     </tbody>
-                </table>
+                </table> -->
             </div>
 						<div class="row mx-5">
 							<div class="col8">
