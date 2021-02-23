@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2021 at 06:13 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- Generation Time: Jan 29, 2021 at 04:25 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -70,7 +71,10 @@ INSERT INTO `absensi` (`id_absen`, `tgl`, `waktu`, `keterangan`, `id_user`) VALU
 (12349, '2021-01-27', '07:15:58', 'Masuk', 21),
 (12350, '2021-01-27', '09:37:02', 'Masuk', 23),
 (12351, '2021-01-27', '11:05:29', 'Pulang', 23),
-(12352, '2021-01-27', '11:42:19', 'Masuk', 24);
+(12352, '2021-01-27', '11:42:19', 'Masuk', 24),
+(12353, '2021-01-28', '11:51:36', 'Masuk', 24),
+(12354, '2021-01-28', '14:33:12', 'Masuk', 25),
+(12355, '2021-01-29', '07:15:24', 'Masuk', 21);
 
 -- --------------------------------------------------------
 
@@ -155,7 +159,9 @@ INSERT INTO `users` (`id_user`, `nik`, `nama`, `telp`, `email`, `foto`, `divisi`
 (21, '1111111', 'Testing', '089546576544', 'user@gmail.com', '1611549632.png', 1, 'testing', '$2y$10$ZOdKlPTmBePs9Nm1c0U8r.LgKmRKsikf3kzd/cfAA/EZiII5/UQM2', 'Karyawan', 'Sarjana', 'Pegawai', 'Kudus'),
 (22, '2222222', 'Testing2', '089546576544', 'user@gmail.com', 'no-foto.png', 1, 'testing2', '$2y$10$bixFk4raSNqT.sgEvSAnZeyThal62iSagO4pTEql3OChaZTDT8mkW', 'Karyawan', 'Sarjana', 'Pegawai', 'Kudus'),
 (23, '3333333', 'Testing3', '089546576544', 'user@gmail.com', 'no-foto.png', 1, 'testing3', '$2y$10$VfUY2SRy53Wf226Z0kJYEujpT1qezH6nrXfSWS/a2aTY8IuaHe8Kq', 'Karyawan', 'Sarjana', 'Pegawai', 'Jepara'),
-(24, '444444', 'Testing4', '089546576544', 'user@gmail.com', 'no-foto.png', 1, 'testing4', '$2y$10$ZUI/cMYFLduRF7I2oqHfeuwn1KWVGZMCTzARw943kY58y4HDA0mPG', 'Karyawan', 'Sarjana', 'Pegawai', 'Kudus');
+(24, '444444', 'Testing4', '089546576544', 'user@gmail.com', 'no-foto.png', 1, 'testing4', '$2y$10$ZUI/cMYFLduRF7I2oqHfeuwn1KWVGZMCTzARw943kY58y4HDA0mPG', 'Karyawan', 'Sarjana', 'Pegawai', 'Kudus'),
+(25, '555555', 'Testing5', '089546576544', 'user@gmail.com', 'no-foto.png', 2, 'testing5', '$2y$10$OA.1fnwkva38Ioz8wlNaPOiVJGDgEznWglBCs26bZTPjaQB4Q/9pG', 'Karyawan', 'Sarjana', 'Pegawai', 'Kudus'),
+(26, '6666666', 'Testing6', '089546576544', 'user@gmail.com', 'no-foto.png', 2, 'testing6', '$2y$10$xdrL8KqrbNWJZKb5GbdT5Og0/9J3y2OVixGZ0k9l/byZMD3ziTFde', 'Karyawan', 'Sarjana', 'Pegawai', 'Kudus');
 
 --
 -- Indexes for dumped tables
@@ -193,7 +199,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12353;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12356;
 
 --
 -- AUTO_INCREMENT for table `divisi`
@@ -211,7 +217,7 @@ ALTER TABLE `jam`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_user` smallint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

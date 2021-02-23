@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/vendor/font-awesome/css/font-awesome.min.css') ?>">
 </head>
-<body style='background-image:url("<?=base_url('assets/img/bg2.jpg')?>");background-repeat:no-repeat;background-attachment:fixed;background-size:cover'>
+<body style='background-image:url("<?=base_url('assets/img/nature.jpg')?>");background-repeat:no-repeat;background-attachment:fixed;background-size:cover'>
+<!-- <body style="background-color: #333333;"> -->
 
     <div class="wraper " >
         <div class="container" >
@@ -40,7 +41,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-user"></i></span>
                                             </div>
-                                            <input type="text" name="username" id="username" class="form-control" autocomplete="username" placeholder="Masukan Username anda" />
+                                            <input type="text" name="username" id="username" class="form-control" autocomplete="username" placeholder="Username" value="adminabsen"/>
                                         </div>
                                     </div>
 
@@ -50,7 +51,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-lock"></i></span>
                                             </div>
-                                            <input type="password" name="password" id="password" class="form-control" autocomplete="current-password" placeholder="**********" />
+                                            <input type="password" name="password" id="password" class="form-control" autocomplete="current-password" placeholder="**********" value="ahmad"/>
                                         </div>
                                     </div>
 

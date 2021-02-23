@@ -4,9 +4,9 @@
             <div class="card-header">
                 <h4 class="card-title float-left">Lokasi Karyawan</h4>
                 <div class="d-inline ml-auto float-right">
-<a href="<?= base_url('dashboard') ?>" class="btn btn-primary btn-sm" type="button" style="" ><i class="fa fa-chevron-left"></i><strong> Kembali</strong><br /></a>                  
+                  <a href="<?= base_url('dashboard') ?>" class="btn btn-primary btn-sm" type="button" style="" ><i class="fa fa-chevron-left"></i><strong> Kembali</strong><br /></a>                  
 				  <a href="#" class="btn btn-success btn-sm btn-add-divisi" data-toggle="modal" data-target="#modal-add-divisi"><i class="fa fa-plus"></i> Tambah Lokasi</a>
-					    
+
                 </div>
             </div>
             <div class="card-body">

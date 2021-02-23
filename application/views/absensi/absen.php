@@ -26,9 +26,6 @@
 									
                                     <a href="<?= base_url('absensi/absen/masuk') ?>" <?=($absen==1||$absen>=1)?"hidden":""?> class="btn btn-primary btn-sm btn-fill"<?= ($absen == 1) ? 'disabled style="cursor:not-allowed"' : '' ?>>Absen masuk</a>
                                 </td>
-								<td>
-								    <a href="<?= base_url('absensi/absen/libur') ?>" <?=($absen==2||$absen>=2)?"hidden":""?> class="btn btn-primary btn-sm btn-fill"<?= ($absen == 2) ? 'disabled style="cursor:not-allowed"' : '' ?>>libur</a>
-                                </td>
                                 <td>
                                     <a href="<?= base_url('absensi/absen/pulang') ?>"  <?=($absen==3||$absen>=3)?"hidden":""?> class="btn btn-success btn-sm btn-fill"<?= ($absen !== 3 || $absen == 3) ? 'disabled style="cursor:not-allowed"' : '' ?>>Absen Pulang</a>
                                 </td>

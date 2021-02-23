@@ -1,16 +1,15 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
-                <div class="row">
-				<h4 class="col card-title ml-5 h1">Daftar Karyawan</h4>
-				<div class="col6">
-				<div class="col "> 
-                    <a href="<?= base_url('absensi/rekapall/' . $divisi) ?>" class="btn btn-success" type="button" style="height: 42px; text-align:right;" ><i class="fa fa-file-text"></i><strong>Rekap</strong><br /></a>
-				    <a href="<?= base_url('daftar_absensi') ?>" class="btn btn-success" type="button" style="height: 42px; text-align:right;" ><i class="fa fa-chevron-left"></i><strong>Kembali</strong><br /></a>
-				</div>
-				</div>
-		   </div>
+        <div class="card-header">
+                <h4 class="card-title float-left">Lokasi Karyawan</h4>
+                <div class="d-inline ml-auto float-right">
+                    <a href="<?= base_url('daftar_absensi') ?>" class="btn btn-primary btn-sm" type="button" style="" ><i class="fa fa-chevron-left"></i><strong> Kembali</strong><br /></a>                  
+                    <a href="<?= base_url('absensi/rekapall/' . $divisi) ?>" class="btn btn-success btn-sm" type="button" style="text-align:right;" ><i class="fa fa-file-text"></i><strong>Rekap</strong><br /></a>
+
+                </div>
+            </div>
+           
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>

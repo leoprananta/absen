@@ -1,7 +1,7 @@
 <div class="row mb-2">
     <h4 class="col-xs-12 col-sm-6 mt-0">Detail Absen</h4>
 	<div class="d-inline ml-auto float-right">			
-    <a href="<?=is_level('Manager')?base_url('absensi/filter_divisi/').$divisi->id_divisi:base_url('dashboard')?>" class="btn btn-success btn-sm" type="button" ><i class="fa fa-chevron-left"></i>  <strong>Kembali</strong><br /></a>  </div>
+    <a href="<?=is_level('Manager')?base_url('absensi/filter_divisi/').$divisi->id_divisi:base_url('dashboard')?>" class="btn btn-primary btn-sm" type="button" ><i class="fa fa-chevron-left"></i>  <strong>Kembali</strong><br /></a>  </div>
     <div class="col-xs-12 col-sm-6 ml-auto text-right">
 	
 	
@@ -37,10 +37,12 @@
         <div class="card">
             <div class="card-header border-bottom">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-sm-6">
                         <table class="table border-0">
                             <tr>
-                                <td class="border-0 py-0">Divisi <?= $divisi->nama_divisi ?></td>
+                                <th class="border-0 py-0">Divisi</th>
+                                <th class="border-0 py-0">:</th>
+                                <th class="border-0 py-0"><?= $divisi->nama_divisi ?></th>
                             </tr>
                         </table>
                     </div>

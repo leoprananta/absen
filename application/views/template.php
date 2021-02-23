@@ -32,11 +32,6 @@
                 Tip 2: you can also add an image using data-image tag
             -->
             <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="<?= base_url() ?>" class="simple-text">
-                        <img src="<?= base_url('assets/img/budpar1.png') ?>" alt="" class="img-fluid">
-                    </a>
-                </div>
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link text-white">
@@ -56,12 +51,12 @@
                         </a>
                     </li>
                     <?php if(is_level('Manager')): ?>
-                        <li class="nav-item <?= @$_active ?>">
-                            <a class="nav-link" href="<?= base_url('jam') ?>">
+                        <!-- <li class="nav-item <?//= @$_active ?>">
+                            <a class="nav-link" href="<?//= base_url('jam') ?>">
                                 <i class="nc-icon nc-time-alarm"></i>
                                 <p>Jam Kerja</p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item <?= @$_active ?>">
                             <a class="nav-link" href="<?= base_url('divisi') ?>">
                                 <i class="nc-icon nc-bag"></i>
@@ -77,7 +72,13 @@
                         <li class="nav-item <?= @$_active ?>">
                             <a class="nav-link" href="<?= base_url('daftar_absensi') ?>">
                                 <i class="nc-icon nc-notes"></i>
-                                <p>Absensi</p>
+                                <p>Presensi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item <?= @$_active ?>">
+                            <a class="nav-link" href="<?= base_url('user') ?>">
+                                <i class="nc-icon nc-circle-09"></i>
+                                <p>Profil</p>
                             </a>
                         </li>
                     <?php else: ?>
@@ -98,6 +99,12 @@
                                 <p>Absensi Ku</p>
                             </a>
                         </li>
+                        <li class="nav-item <?= @$_active ?>">
+                            <a class="nav-link" href="<?= base_url('user') ?>">
+                                <i class="nc-icon nc-circle-09"></i>
+                                <p>Profil</p>
+                            </a>
+                        </li>
                     <?php endif; ?>
                     <li class="nav-item" hidden>
                         <a class="nav-link" href="<?= base_url('dashboard/logout') ?>">
@@ -109,23 +116,19 @@
         </div>
         <div class="main-panel">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg  " color-on-scroll="500" style="background-color:#ccff80;">
+            <nav class="navbar navbar-expand-lg  " color-on-scroll="500" style="background-color:#4CC47D;">
                 <div class=" container-fluid">
-                    <a class="navbar-brand" href="#pablo"> <b>Absensi</b> </a>
+                    <a class="navbar-brand" href="#"><b>Selamat Datang <?=@$this->session->nama?></b></a>
                     <button href="" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar burger-lines">a</span>
-                        <span class="navbar-toggler-bar burger-lines">b</span>
-                        <span class="navbar-toggler-bar burger-lines">c</span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
+                        <span class="navbar-toggler-bar burger-lines"></span>
                     </button>
 					<div class="row">
 						<div class="col3"/>
 						<div class="col">
-						Selamat Datang <b><?=@$this->session->nama?></b>
-						<a class="btn btn-primary" href="<?= base_url('user') ?>">
-                            <i class="nc-icon nc-circle-09"></i>   <b style="font-size:12px">Profil</b>
-                        </a>
-						<a class="btn btn-primary" href="<?= base_url('dashboard/logout') ?>">
-                            <i class="nc-icon nc-button-power"></i>   <b style="font-size:12px">Logout</b>
+						<a class="btn btn-fill btn-danger" href="<?= base_url('dashboard/logout') ?>">
+                           <b> Logout</b>
                         </a>
 						
 						</div>
@@ -139,9 +142,6 @@
                     <div id="alert">
                         <?php if(@$this->session->response): ?>
                             <div class="alert alert-<?= $this->session->response['status'] == 'error' ? 'danger' : $this->session->response['status'] ?> alert-dismissable fade show" role="alert">
-                                <button class="close" aria-dismissable="alert">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
                                 <p><?= $this->session->response['message'] ?></p>
                             </div>
                         <?php endif; ?>
@@ -149,15 +149,6 @@
                     <?= $content ?>
                 </div>
             </div>
-            <footer class="footer">
-                <div class="container">
-                    <nav>
-                        <p class="copyright text-center">
-                            &copy; 2021 Budpar</a>
-                        </p>
-                    </nav>
-                </div>
-            </footer>
         </div>
     </div>
 </body>
